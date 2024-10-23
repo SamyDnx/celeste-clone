@@ -18,6 +18,7 @@ background = pygame.image.load("assets/1a-01.png")
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 game = Game()
+game.get_all_collisions()
 
 run = True
 while run:
@@ -27,9 +28,12 @@ while run:
 
     if game.pressed.get(pygame.K_ESCAPE):
         run = False
-    elif game.pressed.get(pygame.K_d) and game.player.rect.x < 1535:
-        game.player.move_right()
-    elif game.pressed.get(pygame.K_q) and game.player.rect.x > 35:
+    elif game.pressed.get(pygame.K_d):
+        if game.check_collisions(game.player) == "walls":
+            continue
+        else:
+            game.player.move_right()
+    elif game.pressed.get(pygame.K_q):
         game.player.move_left()
     
     pygame.display.flip()
