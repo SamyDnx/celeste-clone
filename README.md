@@ -1,4 +1,5 @@
 # TODO :
+  - Finish collisions implementation (add 4 more collisions points detector)
   - Physics
   - Jump
   - Dash
