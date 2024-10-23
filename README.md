@@ -1,0 +1,14 @@
+# TODO :
+  - Physics
+  - Jump
+  - Dash
+  - Grab
+  - Death
+  - Finish
+  - Animations
+  - VFX
+  - Music
+  - SFX
+  - Multiple Rooms
+  - Multiple Levels
+  - All UI (Start and pause menu, timer, ...)
