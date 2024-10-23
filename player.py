@@ -21,15 +21,30 @@ class Player(pygame.sprite.Sprite):
     def update_direction(self):
         self.image = pygame.transform.flip(self.image, True, False)
 
+    def update_collisions_points(self):
+        self.top_mid = (self.rect.x + (self.width // 2), self.rect.y)
+        self.bottom_mid = (self.top_mid[0], self.rect.y + self.height)
+        self.left_mid = (self.rect.x, self.rect.y + (self.height // 2))
+        self.right_mid = (self.rect.x + self.width, self.left_mid[1])
+
     def move_right(self):
         if self.direction == 'L':
             self.update_direction()
             self.direction = 'R'
         self.rect.x += self.velocity
+        self.update_collisions_points()
     
     def move_left(self):
         if self.direction == 'R':
             self.update_direction()
             self.direction = 'L'
         self.rect.x -= self.velocity
+        self.update_collisions_points()
 
+    def move_down(self):
+        self.rect.y += self.velocity
+        self.update_collisions_points()
+
+    def move_up(self):
+        self.rect.y -= self.velocity
+        self.update_collisions_points()

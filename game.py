@@ -3,9 +3,9 @@ from player import Player
 
 WIDTH, HEIGHT = 1600, 900
 
-RED = pygame.Color(255, 0, 0)       # Enemies
-GREEN = pygame.Color(0, 255, 0)     # Finish
-BLUE = pygame.Color(0, 0, 255)      # Walls
+RED = pygame.Color(254, 0, 0, 255)       # Enemies
+GREEN = pygame.Color(0, 254, 0, 255)     # Finish
+BLUE = pygame.Color(0, 0, 254, 255)      # Walls
 
 class Game:
 
@@ -22,12 +22,34 @@ class Game:
                 px = self.level_image.get_at((x, y))
                 self.collisions[(x, y)] = px
 
-    def check_collisions(self, player):
-        if self.collisions[player.bottom_mid] == BLUE or self.collisions[player.right_mid] == BLUE or self.collisions[player.left_mid] == BLUE or self.collisions[player.top_mid] == BLUE:
+    def check_right_collisions(self):
+        if self.collisions[self.player.right_mid] == BLUE:
             return "walls"
-
-        elif self.collisions[player.bottom_mid] == RED or self.collisions[player.right_mid] == RED or self.collisions[player.left_mid] == RED or self.collisions[player.top_mid] == RED:
+        elif self.collisions[self.player.right_mid] == RED:
             return "enemies"
-        
-        elif self.collisions[player.bottom_mid] == GREEN or self.collisions[player.right_mid] == GREEN or self.collisions[player.left_mid] == GREEN or self.collisions[player.top_mid] == GREEN:
+        elif self.collisions[self.player.right_mid] == GREEN:
+            return "finish"
+    
+    def check_left_collisions(self):
+        if self.collisions[self.player.left_mid] == BLUE:
+            return "walls"
+        elif self.collisions[self.player.left_mid] == RED:
+            return "enemies"
+        elif self.collisions[self.player.left_mid] == GREEN:
+            return "finish"
+
+    def check_top_collisions(self):
+        if self.collisions[self.player.top_mid] == BLUE:
+            return "walls"
+        elif self.collisions[self.player.top_mid] == RED:
+            return "enemies"
+        elif self.collisions[self.player.top_mid] == GREEN:
+            return "finish"
+
+    def check_bottom_collisions(self):
+        if self.collisions[self.player.bottom_mid] == BLUE:
+            return "walls"
+        elif self.collisions[self.player.bottom_mid] == RED:
+            return "enemies"
+        elif self.collisions[self.player.bottom_mid] == GREEN:
             return "finish"

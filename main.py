@@ -28,13 +28,30 @@ while run:
 
     if game.pressed.get(pygame.K_ESCAPE):
         run = False
+
     elif game.pressed.get(pygame.K_d):
-        if game.check_collisions(game.player) == "walls":
-            continue
-        else:
-            game.player.move_right()
+        if game.check_right_collisions() == "walls":
+            game.player.rect.x -= game.player.velocity
+            game.player.update_collisions_points()
+        game.player.move_right()
+
     elif game.pressed.get(pygame.K_q):
+        if game.check_left_collisions() == "walls":
+            game.player.rect.x += game.player.velocity
+            game.player.update_collisions_points()
         game.player.move_left()
+
+    elif game.pressed.get(pygame.K_s):
+        if game.check_bottom_collisions() == "walls":
+            game.player.rect.y -= game.player.velocity
+            game.player.update_collisions_points()
+        game.player.move_down()
+
+    elif game.pressed.get(pygame.K_z):
+        if game.check_top_collisions() == "walls":
+            game.player.rect.y += game.player.velocity
+            game.player.update_collisions_points()
+        game.player.move_up()
     
     pygame.display.flip()
 
